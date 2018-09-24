@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 	private void Update ()
     {
         PlayerMovement();
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireLaser();
         }
@@ -104,6 +104,8 @@ public class Player : MonoBehaviour
 
     private void FireLaser()
     {
+
+
         if (Time.time > _canFire)
         {
             _audioSource.Play();
@@ -117,9 +119,9 @@ public class Player : MonoBehaviour
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
                 _canFire = Time.time + _fireRate;
             }
-        }     
+        }
+        
     }
-
     public void TripleShotPowerUpOn()
     {
         tripleShot = true;

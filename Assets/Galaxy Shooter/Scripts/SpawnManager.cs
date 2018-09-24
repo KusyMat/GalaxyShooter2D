@@ -12,23 +12,49 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _powerUps;
 
-	// Use this for initialization
-	void Start ()
+    private int _enemySpawner = 0;
+    // Use this for initialization
+    void Start()
     {
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnPowerUp());
-	}
+    }
 
     //create a coroutine to spawn enemy every 3 seconds
     public IEnumerator SpawnEnemy()
     {
         while (true)
         {
-            _startPosition = Random.Range(-_xLimit, _xLimit);
-            Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
-            yield return new WaitForSeconds(3.0f);
+            if (_enemySpawner <= 10)
+            {
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _enemySpawner++;
+                yield return new WaitForSeconds(3.0f);
+            }
+            if (_enemySpawner > 10 && _enemySpawner <= 20 )
+            {
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _enemySpawner++;
+                yield return new WaitForSeconds(3.0f);
+            }
+            if (_enemySpawner > 20)
+            {
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _startPosition = Random.Range(-_xLimit, _xLimit);
+                Instantiate(_enemyShipPrefab, new Vector3(_startPosition, _yLimit, 0), Quaternion.identity);
+                _enemySpawner++;
+                yield return new WaitForSeconds(3.0f);
+            }
         }
-        
     }
     public IEnumerator SpawnPowerUp()
     {

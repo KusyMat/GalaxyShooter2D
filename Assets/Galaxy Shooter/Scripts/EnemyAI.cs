@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
-    //var for speed
+
     [SerializeField]
     private float _speed = 3.0f;
     [SerializeField]
@@ -67,6 +67,5 @@ public class EnemyAI : MonoBehaviour {
             AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position, 1f);
             Destroy(this.gameObject);
         }
-
     }
 }

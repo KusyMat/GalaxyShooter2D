@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 
     private SpawnManager _spawnManager;
 
+
     public bool gameStarted = false;
 
     private void Update()

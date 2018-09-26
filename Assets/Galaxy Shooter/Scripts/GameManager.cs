@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _uiManager.HideTitleScreen();
     }   
+
     public void GameOver()
     {
         _spawnManager = FindObjectOfType<SpawnManager>();
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour {
         gameStarted = false;
 
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _uiManager.CheckForTopScore();
         _uiManager.score = 0;
         _uiManager.scoreText.text = "Score: " + _uiManager.score;
         _uiManager.ShowTitleScreen();

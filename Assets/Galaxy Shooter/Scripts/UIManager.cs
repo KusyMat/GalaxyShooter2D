@@ -10,8 +10,15 @@ public class UIManager : MonoBehaviour
     public Image livesImageDisplay;
     public Image titleScreen;
     public Text scoreText;
+    public Text topScoreText;
     public int score = 0;
+    public int topScore = 0;
 
+    private void Start()
+    {
+        topScore = PlayerPrefs.GetInt("TopScore", 0);
+        topScoreText.text = ("Top: " + topScore);
+    }
     public void UpdateLives(int currentLives)
     {
         livesImageDisplay.sprite = lives[currentLives];
@@ -21,6 +28,17 @@ public class UIManager : MonoBehaviour
     {
         score += 100;
         scoreText.text = "Score: " + score;
+    }
+
+    public void CheckForTopScore()
+    {
+        if (score > topScore)
+        {
+            topScore = score;
+            topScoreText.text = "Top: " + topScore;
+            PlayerPrefs.SetInt("TopScore", topScore);
+            PlayerPrefs.Save();
+        }
     }
 
     public void ShowTitleScreen()

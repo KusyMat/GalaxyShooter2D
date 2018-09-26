@@ -5,32 +5,58 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
+    private Player _player;
 	// Use this for initialization
 	void Start ()
     {
         _animator = GetComponent<Animator>();
+        _player = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (_player.isPlayerOne == true)
         {
-            _animator.SetBool("TurnLeft", true);
-            _animator.SetBool("TurnRight", false);
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                _animator.SetBool("TurnLeft", true);
+                _animator.SetBool("TurnRight", false);
+            }
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                _animator.SetBool("TurnLeft", false);
+            }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                _animator.SetBool("TurnRight", true);
+                _animator.SetBool("TurnLeft", false);
+            }
+            else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                _animator.SetBool("TurnRight", false);
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (_player.isPlayerTwo == true)
         {
-            _animator.SetBool("TurnLeft", false);
+            if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Keypad4))
+            {
+                _animator.SetBool("TurnLeft", true);
+                _animator.SetBool("TurnRight", false);
+            }
+            else if (Input.GetKeyUp(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Keypad4))
+            {
+                _animator.SetBool("TurnLeft", false);
+            }
+            if (Input.GetKeyDown(KeyCode.PageDown) || Input.GetKeyDown(KeyCode.Keypad6))
+            {
+                _animator.SetBool("TurnRight", true);
+                _animator.SetBool("TurnLeft", false);
+            }
+            else if (Input.GetKeyUp(KeyCode.PageDown) || Input.GetKeyDown(KeyCode.Keypad6))
+            {
+                _animator.SetBool("TurnRight", false);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _animator.SetBool("TurnRight", true);
-            _animator.SetBool("TurnLeft", false);
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            _animator.SetBool("TurnRight", false);
-        }
-	}
+    }
 }

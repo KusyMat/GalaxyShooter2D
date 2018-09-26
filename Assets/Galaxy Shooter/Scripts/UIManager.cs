@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -30,5 +31,17 @@ public class UIManager : MonoBehaviour
     public void HideTitleScreen()
     {
         titleScreen.enabled = false;
+    }
+
+    public void ExitToMainMenu()
+    {
+        Debug.Log("Main Menu is loading...");
+        SceneManager.LoadScene("Main_Menu", LoadSceneMode.Single);
+    }
+
+    public void ReturnToGame()
+    {
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.ResumeGame();
     }
 }
